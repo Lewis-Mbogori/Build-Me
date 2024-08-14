@@ -9,9 +9,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  String _name = '';
+  String _firstname = '';
+  String _lastname = '';
   String _email = '';
   String _password = '';
+  String _phone = '';
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
@@ -40,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(labelText: 'First Name'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your name';
@@ -48,7 +50,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
                 onSaved: (value) {
-                  _name = value!;
+                  _firstname = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Last name'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your last name';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _password = value!;
                 },
               ),
               TextFormField(
@@ -73,6 +88,19 @@ class _SignUpPageState extends State<SignUpPage> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter a password';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _password = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Phone Number'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your phone number';
                   }
                   return null;
                 },

@@ -12,6 +12,9 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
+  String _firstname = '';
+  String _lastname = '';
+  String _phone = '';
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
@@ -40,6 +43,32 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
+                decoration: InputDecoration(labelText: 'Firstname'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your first name';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _firstname = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Last name'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your last name';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _lastname = value!;
+                },
+              ),
+              TextFormField(
                 decoration: InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -66,6 +95,19 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 onSaved: (value) {
                   _password = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Phone Number'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _phone = value!;
                 },
               ),
               SizedBox(height: 20),

@@ -9,9 +9,12 @@ class AddUserForm extends StatefulWidget {
 
 class _AddUserFormState extends State<AddUserForm> {
   final _formKey = GlobalKey<FormState>();
-  String _name = '';
+  String _firstname = '';
+  String _lastname = '';
   String _email = '';
-  String _profilePicture = '';
+  String _password = '';
+  String _phone = '';
+
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
@@ -19,9 +22,9 @@ class _AddUserFormState extends State<AddUserForm> {
 
       // Create the data to send to the API
       final user = {
-        'name': _name,
+        'name': _firstname,
         'email': _email,
-        'profilePicture': _profilePicture,
+        'password': _password,
       };
 
       // Send the data to the backend API
@@ -60,7 +63,7 @@ class _AddUserFormState extends State<AddUserForm> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(labelText: 'First Name'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter a name';
@@ -68,7 +71,19 @@ class _AddUserFormState extends State<AddUserForm> {
                   return null;
                 },
                 onSaved: (value) {
-                  _name = value!;
+                  _firstname = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Last Name'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter a name';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _lastname = value!;
                 },
               ),
               TextFormField(
@@ -88,15 +103,27 @@ class _AddUserFormState extends State<AddUserForm> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Profile Picture URL'),
+                decoration: InputDecoration(labelText: 'Password'),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter a profile picture URL';
+                    return 'Please enter a password';
                   }
                   return null;
                 },
                 onSaved: (value) {
-                  _profilePicture = value!;
+                  _password = value!;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Phone'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter a phone number';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _phone = value!;
                 },
               ),
               SizedBox(height: 20),
